@@ -1,0 +1,22 @@
+{
+  "name": "TICoordinatorKit",
+  "version": "0.1.0",
+  "summary": "A short description of TICoordinatorKit.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/Vitaliy Salnikov/TICoordinatorKit",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Vitaliy Salnikov": "mrtokii@outlook.com"
+  },
+  "source": {
+    "git": "https://github.com/Vitaliy Salnikov/TICoordinatorKit.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "TICoordinatorKit/Classes/**/*"
+}

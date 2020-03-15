@@ -1,0 +1,16 @@
+PODS:
+  - TICoordinatorKit (0.1.0)
+
+DEPENDENCIES:
+  - TICoordinatorKit (from `../`)
+
+EXTERNAL SOURCES:
+  TICoordinatorKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  TICoordinatorKit: 17fa4914316cb1da62685589a04d6bb2aac3c5a4
+
+PODFILE CHECKSUM: 426c67c7d7e27e82a2f26bc761a5fd722e69ac41
+
+COCOAPODS: 1.8.4

@@ -1,0 +1,6 @@
+framework module TICoordinatorKit {
+  umbrella header "TICoordinatorKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
