@@ -26,8 +26,8 @@ public final class ModalRouter: ModalRoutable {
     
     private var childRootControllers: [UIViewController] = []
 
-    private(set) weak var rootController: UIViewController?
-    private(set) weak var topController: UIViewController?
+    public private(set) weak var rootController: UIViewController?
+    public private(set) weak var topController: UIViewController?
 
     public init(_ rootController: UIViewController) {
         self.rootController = rootController
