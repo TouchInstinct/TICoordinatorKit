@@ -33,7 +33,7 @@ open class StackRouter: StackRoutable {
         return ModalRouter(rootController)
     }()
 
-    private(set) weak var rootController: UINavigationController?
+    public private(set) weak var rootController: UINavigationController?
 
     public var headModule: Presentable?
 

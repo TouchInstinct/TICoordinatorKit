@@ -24,7 +24,7 @@ import Foundation
 
 open class BaseCoordinator: Coordinatable {
 
-    private(set) var childCoordinators: [Coordinatable] = []
+    public private(set) var childCoordinators: [Coordinatable] = []
 
     public var onFinish: ((Coordinatable) -> ())?
 
