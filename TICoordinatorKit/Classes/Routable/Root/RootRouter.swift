@@ -34,6 +34,8 @@ open class RootRouter: StackRouter, RootRoutable {
         }
         rootController?.setViewControllers([controller], animated: false)
         rootController?.isNavigationBarHidden = hideBar
+        
+        headModule = module
     }
 
     public func popToRootModule(animated: Bool) {
