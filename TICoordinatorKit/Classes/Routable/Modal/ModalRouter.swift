@@ -82,6 +82,7 @@ public final class ModalRouter: ModalRoutable {
 
         let child = navigationControllerFactory(controller)
         child.modalPresentationStyle = controller.modalPresentationStyle
+        child.transitioningDelegate = controller.transitioningDelegate
         childRootControllers.append(child)
 
         let router = StackRouter(child)
