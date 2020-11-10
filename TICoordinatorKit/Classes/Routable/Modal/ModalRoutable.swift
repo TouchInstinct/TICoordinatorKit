@@ -28,6 +28,8 @@ public protocol ModalRoutable: Presentable {
     
     func present(_ module: Presentable?)
     func present(_ module: Presentable?, animated: Bool)
+    func present(_ module: Presentable?, modalPresentationStyle: UIModalPresentationStyle?)
+    func present(_ module: Presentable?, modalPresentationStyle: UIModalPresentationStyle?, animated: Bool)
 
     func dismissModule()
     func dismissModule(animated: Bool, completion: (() -> ())?)
