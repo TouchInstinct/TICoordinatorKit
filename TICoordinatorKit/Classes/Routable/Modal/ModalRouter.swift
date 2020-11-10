@@ -54,7 +54,10 @@ public final class ModalRouter: ModalRoutable {
         }
 
         let presetation: (() -> ()) = { [weak self] in
-            self?.presentOn(self?.rootController, target: controller, animated: animated)
+            self?.presentOn(self?.rootController,
+                            target: controller,
+                            modalPresentationStyle: modalPresentationStyle,
+                            animated: animated)
         }
 
         if rootController?.presentedViewController != nil {
