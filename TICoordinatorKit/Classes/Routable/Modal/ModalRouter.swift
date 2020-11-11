@@ -44,6 +44,10 @@ public final class ModalRouter: ModalRoutable {
         present(module, animated: animated, configurationClosure: nil)
     }
     
+    public func present(_ module: Presentable?, configurationClosure: ConfigurationClosure?) {
+        present(module, animated: true, configurationClosure: configurationClosure)
+    }
+    
     public func present(_ module: Presentable?, animated: Bool, configurationClosure: ConfigurationClosure?) {
         guard let controller = module?.toPresent() else {
             return
