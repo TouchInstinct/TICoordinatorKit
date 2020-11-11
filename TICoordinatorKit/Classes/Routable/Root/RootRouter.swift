@@ -25,16 +25,29 @@ import UIKit
 open class RootRouter: StackRouter, RootRoutable {
 
     public func setRootModule(_ module: Presentable?) {
-        setRootModule(module, hideBar: false)
+        setRootModule(module, rootConfigurationClosure: nil, childConfigurationClosure: nil)
+    }
+    
+    public func setRootModule(_ module: Presentable?, childConfigurationClosure: ConfigurationClosure?) {
+        setRootModule(module, rootConfigurationClosure: nil, childConfigurationClosure: childConfigurationClosure)
+    }
+    
+    public func setRootModule(_ module: Presentable?, rootConfigurationClosure: ConfigurationClosure?) {
+        setRootModule(module, rootConfigurationClosure: rootConfigurationClosure, childConfigurationClosure: nil)
     }
 
-    public func setRootModule(_ module: Presentable?, hideBar: Bool) {
-        guard let controller = extractController(from: module) else {
+    public func setRootModule(_ module: Presentable?,
+                              rootConfigurationClosure: ConfigurationClosure?,
+                              childConfigurationClosure: ConfigurationClosure?) {
+        guard let rootController = rootController,
+              let controller = extractController(from: module) else {
             return
         }
-        rootController?.setViewControllers([controller], animated: false)
-        rootController?.isNavigationBarHidden = hideBar
-        
+        rootController.setViewControllers([controller], animated: false)
+
+        rootConfigurationClosure?(rootController)
+        childConfigurationClosure?(controller)
+
         headModule = module
     }
 

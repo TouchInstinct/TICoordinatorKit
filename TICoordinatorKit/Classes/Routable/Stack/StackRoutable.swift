@@ -30,11 +30,11 @@ public protocol StackRoutable: ModalRoutable {
     func push(_ module: Presentable?, animated: Bool)
     func push(_ module: Presentable?,
               animated: Bool,
-              configurationClosure: ((UIViewController) -> ())?)
+              configurationClosure: ConfigurationClosure?)
     
     func push(_ module: Presentable?,
               animated: Bool,
-              configurationClosure: ((UIViewController) -> ())?,
+              configurationClosure: ConfigurationClosure?,
               completion: (() -> ())?)
 
     func popModule()

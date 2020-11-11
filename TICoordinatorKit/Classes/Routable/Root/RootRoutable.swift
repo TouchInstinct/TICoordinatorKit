@@ -25,7 +25,11 @@ import Foundation
 public protocol RootRoutable: StackRoutable {
 
     func setRootModule(_ module: Presentable?)
-    func setRootModule(_ module: Presentable?, hideBar: Bool)
+    func setRootModule(_ module: Presentable?, childConfigurationClosure: ConfigurationClosure?)
+    func setRootModule(_ module: Presentable?, rootConfigurationClosure: ConfigurationClosure?)
+    func setRootModule(_ module: Presentable?,
+                       rootConfigurationClosure: ConfigurationClosure?,
+                       childConfigurationClosure: ConfigurationClosure?)
 
     func popToRootModule(animated: Bool)
 }
