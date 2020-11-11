@@ -25,28 +25,28 @@ import UIKit
 open class RootRouter: StackRouter, RootRoutable {
 
     public func setRootModule(_ module: Presentable?) {
-        setRootModule(module, childConfigurationClosure: nil, configurationClosure: nil)
-    }
-    
-    public func setRootModule(_ module: Presentable?, configurationClosure: ConfigurationClosure?) {
-        setRootModule(module, childConfigurationClosure: nil, configurationClosure: configurationClosure)
+        setRootModule(module, rootConfigurationClosure: nil, childConfigurationClosure: nil)
     }
     
     public func setRootModule(_ module: Presentable?, childConfigurationClosure: ConfigurationClosure?) {
-        setRootModule(module, childConfigurationClosure: childConfigurationClosure, configurationClosure: nil)
+        setRootModule(module, rootConfigurationClosure: nil, childConfigurationClosure: childConfigurationClosure)
+    }
+    
+    public func setRootModule(_ module: Presentable?, rootConfigurationClosure: ConfigurationClosure?) {
+        setRootModule(module, rootConfigurationClosure: rootConfigurationClosure, childConfigurationClosure: nil)
     }
 
     public func setRootModule(_ module: Presentable?,
-                              childConfigurationClosure: ConfigurationClosure?,
-                              configurationClosure: ConfigurationClosure?) {
+                              rootConfigurationClosure: ConfigurationClosure?,
+                              childConfigurationClosure: ConfigurationClosure?) {
         guard let rootController = rootController,
               let controller = extractController(from: module) else {
             return
         }
         rootController.setViewControllers([controller], animated: false)
 
-        childConfigurationClosure?(rootController)
-        configurationClosure?(controller)
+        rootConfigurationClosure?(rootController)
+        childConfigurationClosure?(controller)
 
         headModule = module
     }
