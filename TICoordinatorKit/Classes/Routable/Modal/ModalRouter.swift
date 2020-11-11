@@ -41,12 +41,19 @@ public final class ModalRouter: ModalRoutable {
     }
 
     public func present(_ module: Presentable?, animated: Bool) {
+        present(module, animated: animated, configurationClosure: nil)
+    }
+    
+    public func present(_ module: Presentable?, animated: Bool, configurationClosure: ConfigurationClosure?) {
         guard let controller = module?.toPresent() else {
             return
         }
 
         let presetation: (() -> ()) = { [weak self] in
-            self?.presentOn(self?.rootController, target: controller, animated: animated)
+            self?.presentOn(self?.rootController,
+                            target: controller,
+                            animated: animated,
+                            configurationClosure: configurationClosure)
         }
 
         if rootController?.presentedViewController != nil {
@@ -133,9 +140,14 @@ public final class ModalRouter: ModalRoutable {
 
     // MARK: - Private methods
 
-    private func presentOn(_ source: UIViewController?, target: UIViewController, animated: Bool) {
+    private func presentOn(_ source: UIViewController?,
+                           target: UIViewController,
+                           animated: Bool,
+                           configurationClosure: ConfigurationClosure? = nil) {
 
-        if target.modalPresentationStyle != .custom {
+        if let configurationClosure = configurationClosure {
+            configurationClosure(target)
+        } else if target.modalPresentationStyle != .custom {
             target.modalPresentationStyle = .overFullScreen
         }
 

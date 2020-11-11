@@ -128,6 +128,10 @@ open class StackRouter: StackRoutable {
     public func present(_ module: Presentable?, animated: Bool) {
         modalRouter?.present(module, animated: animated)
     }
+    
+    public func present(_ module: Presentable?, animated: Bool, configurationClosure: ConfigurationClosure?) {
+        modalRouter?.present(module, animated: animated, configurationClosure: configurationClosure)
+    }
 
     public func dismissModule() {
         modalRouter?.dismissModule()

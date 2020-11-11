@@ -25,9 +25,11 @@ import UIKit
 public protocol ModalRoutable: Presentable {
 
     typealias NavigationControllerFactory = (UIViewController) -> UINavigationController
+    typealias ConfigurationClosure = (UIViewController) -> ()
     
     func present(_ module: Presentable?)
     func present(_ module: Presentable?, animated: Bool)
+    func present(_ module: Presentable?, animated: Bool, configurationClosure: ConfigurationClosure?)
 
     func dismissModule()
     func dismissModule(animated: Bool, completion: (() -> ())?)
