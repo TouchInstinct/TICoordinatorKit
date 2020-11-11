@@ -55,7 +55,7 @@ open class StackRouter: StackRoutable {
     
     public func push(_ module: Presentable?,
                      animated: Bool,
-                     configurationClosure: ((UIViewController) -> ())?) {
+                     configurationClosure: ConfigurationClosure?) {
         
         push(module, animated: animated, configurationClosure: configurationClosure, completion: nil)
     }
@@ -64,7 +64,7 @@ open class StackRouter: StackRoutable {
 
     public func push(_ module: Presentable?,
                      animated: Bool,
-                     configurationClosure: ((UIViewController) -> ())?,
+                     configurationClosure: ConfigurationClosure?,
                      completion: (() -> ())?) {
         
         guard let controller = extractController(from: module) else {

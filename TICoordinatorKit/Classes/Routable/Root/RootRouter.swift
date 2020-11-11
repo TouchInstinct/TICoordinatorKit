@@ -25,15 +25,27 @@ import UIKit
 open class RootRouter: StackRouter, RootRoutable {
 
     public func setRootModule(_ module: Presentable?) {
-        setRootModule(module, configurationClosure: nil)
+        setRootModule(module, rootConfigurationClosure: nil, configurationClosure: nil)
+    }
+    
+    public func setRootModule(_ module: Presentable?, configurationClosure: ConfigurationClosure?) {
+        setRootModule(module, rootConfigurationClosure: nil, configurationClosure: configurationClosure)
+    }
+    
+    public func setRootModule(_ module: Presentable?, rootConfigurationClosure: ConfigurationClosure?) {
+        setRootModule(module, rootConfigurationClosure: rootConfigurationClosure, configurationClosure: nil)
     }
 
-    public func setRootModule(_ module: Presentable?, configurationClosure: ConfigurationClosure?) {
-        guard let controller = extractController(from: module) else {
+    public func setRootModule(_ module: Presentable?,
+                              rootConfigurationClosure: ConfigurationClosure?,
+                              configurationClosure: ConfigurationClosure?) {
+        guard let rootController = rootController,
+              let controller = extractController(from: module) else {
             return
         }
-        rootController?.setViewControllers([controller], animated: false)
+        rootController.setViewControllers([controller], animated: false)
 
+        rootConfigurationClosure?(rootController)
         configurationClosure?(controller)
 
         headModule = module
