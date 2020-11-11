@@ -135,9 +135,9 @@ public final class ModalRouter: ModalRoutable {
 
     private func presentOn(_ source: UIViewController?, target: UIViewController, animated: Bool) {
 
-//        if target.modalPresentationStyle != .custom {
-//            target.modalPresentationStyle = .overFullScreen
-//        }
+        if target.modalPresentationStyle != .custom {
+            target.modalPresentationStyle = .overFullScreen
+        }
 
         target.modalPresentationCapturesStatusBarAppearance = true
         source?.present(target, animated: animated, completion: nil)
