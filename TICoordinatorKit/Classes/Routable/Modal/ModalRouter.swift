@@ -39,16 +39,8 @@ public final class ModalRouter: ModalRoutable {
     public func present(_ module: Presentable?) {
         present(module, animated: true)
     }
-    
-    public func present(_ module: Presentable?, modalPresentationStyle: UIModalPresentationStyle?) {
-        present(module, modalPresentationStyle: modalPresentationStyle, animated: true)
-    }
 
     public func present(_ module: Presentable?, animated: Bool) {
-        present(module, modalPresentationStyle: nil, animated: true)
-    }
-    
-    public func present(_ module: Presentable?, modalPresentationStyle: UIModalPresentationStyle?, animated: Bool) {
         guard let controller = module?.toPresent() else {
             return
         }
@@ -141,16 +133,11 @@ public final class ModalRouter: ModalRoutable {
 
     // MARK: - Private methods
 
-    private func presentOn(_ source: UIViewController?,
-                           target: UIViewController,
-                           modalPresentationStyle: UIModalPresentationStyle? = nil,
-                           animated: Bool) {
+    private func presentOn(_ source: UIViewController?, target: UIViewController, animated: Bool) {
 
-        if let modalPresentationStyle = modalPresentationStyle {
-            target.modalPresentationStyle = modalPresentationStyle
-        } else if target.modalPresentationStyle != .custom {
-            target.modalPresentationStyle = .overFullScreen
-        }
+//        if target.modalPresentationStyle != .custom {
+//            target.modalPresentationStyle = .overFullScreen
+//        }
 
         target.modalPresentationCapturesStatusBarAppearance = true
         source?.present(target, animated: animated, completion: nil)
