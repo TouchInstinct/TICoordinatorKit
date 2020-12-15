@@ -24,7 +24,7 @@ import UIKit
 
 public protocol StackRoutable: ModalRoutable {
 
-    var headModule: Presentable? { get }
+    var headModule: Presentable? { get set }
 
     func push(_ module: Presentable?)
     func push(_ module: Presentable?, animated: Bool)
