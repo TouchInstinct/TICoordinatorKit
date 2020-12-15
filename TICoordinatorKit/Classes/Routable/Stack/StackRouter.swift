@@ -37,6 +37,10 @@ open class StackRouter: StackRoutable {
 
     public var headModule: Presentable?
 
+    public var topModule: Presentable? {
+        return rootController?.topViewController
+    }
+
     public init(_ rootController: UINavigationController) {
         self.rootController = rootController
         self.headModule = rootController.topViewController
