@@ -22,7 +22,7 @@
 
 import UIKit
 
-open class StackRouter: StackRoutable {
+open class StackRouter: NSObject, StackRoutable, UINavigationControllerDelegate {
 
     private var completions: [UIViewController: () -> ()]
 
@@ -45,6 +45,10 @@ open class StackRouter: StackRoutable {
         self.rootController = rootController
         self.headModule = rootController.topViewController
         self.completions = [:]
+
+        super.init()
+
+        self.rootController?.delegate = self
     }
 
     // MARK: - StackRoutable
@@ -200,10 +204,19 @@ open class StackRouter: StackRoutable {
         completions[controller]?()
         completions.removeValue(forKey: controller)
     }
-
+    
     public func runCompletionsChain(of controllers: [UIViewController]) {
         controllers.forEach { [weak self] controller in
             self?.runCompletion(for: controller)
         }
+    }
+    
+    public func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        guard let poppedViewController = navigationController.transitionCoordinator?.viewController(forKey: .from),
+              !navigationController.viewControllers.contains(poppedViewController) else {
+            return
+        }
+        
+        runCompletion(for: poppedViewController)
     }
 }
