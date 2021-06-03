@@ -31,10 +31,15 @@ public protocol StackRoutable: ModalRoutable {
     var topModule: Presentable? { get }
 
     func push(_ module: Presentable?)
+    func push(_ module: Presentable?,
+                     completion: (() -> ())?)
     func push(_ module: Presentable?, animated: Bool)
     func push(_ module: Presentable?,
               animated: Bool,
               configurationClosure: ConfigurationClosure?)
+    func push(_ module: Presentable?,
+              animated: Bool,
+              completion: (() -> ())?)
     
     func push(_ module: Presentable?,
               animated: Bool,
