@@ -57,6 +57,12 @@ open class StackRouter: NSObject, StackRoutable, UINavigationControllerDelegate 
         push(module, animated: true)
     }
 
+    public func push(_ module: Presentable?,
+                     completion: (() -> ())?) {
+
+        push(module, animated: true, completion: completion)
+    }
+
     public func push(_ module: Presentable?, animated: Bool) {
         push(module, animated: animated, configurationClosure: nil, completion: nil)
     }
@@ -68,7 +74,12 @@ open class StackRouter: NSObject, StackRoutable, UINavigationControllerDelegate 
         push(module, animated: animated, configurationClosure: configurationClosure, completion: nil)
     }
     
-    
+    public func push(_ module: Presentable?,
+                     animated: Bool,
+                     completion: (() -> ())?) {
+
+        push(module, animated: animated, configurationClosure: nil, completion: completion)
+    }
 
     public func push(_ module: Presentable?,
                      animated: Bool,
