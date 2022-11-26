@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'TICoordinatorKit'
-  s.version          = '1.1.5'
+  s.version          = '1.1.7'
   s.summary          = 'A framework for performing navigation in iOS application.'
   s.homepage         = 'https://github.com/TouchInstinct/TICoordinatorKit'
   s.license          = 'Apache License, Version 2.0'
@@ -9,5 +9,5 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '9.0'
   s.source_files = 'TICoordinatorKit/Classes/**/*'
   s.frameworks = 'UIKit'
-  s.swift_versions = ['5.0']
+  s.swift_versions = ['5.2']
 end

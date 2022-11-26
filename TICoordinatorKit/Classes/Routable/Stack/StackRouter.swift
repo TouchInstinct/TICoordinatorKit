@@ -24,7 +24,7 @@ import UIKit
 
 open class StackRouter: StackRoutable {
 
-    private var completions: [UIViewController: () -> ()]
+    private var completions: NSMapTable<UIViewController, CallbackWrapper> = NSMapTable.weakToStrongObjects()
 
     private lazy var modalRouter: ModalRoutable? = { [weak self] in
         guard let rootController = self?.rootController else {
@@ -35,7 +35,7 @@ open class StackRouter: StackRoutable {
 
     public private(set) weak var rootController: UINavigationController?
 
-    public var headModule: Presentable?
+    public weak var headModule: Presentable?
 
     public var topModule: Presentable? {
         return rootController?.topViewController
@@ -44,7 +44,6 @@ open class StackRouter: StackRoutable {
     public init(_ rootController: UINavigationController) {
         self.rootController = rootController
         self.headModule = rootController.topViewController
-        self.completions = [:]
     }
 
     // MARK: - StackRoutable
@@ -78,7 +77,7 @@ open class StackRouter: StackRoutable {
         configurationClosure?(controller)
 
         if let completion = completion {
-            completions[controller] = completion
+            completions.setObject(CallbackWrapper(callback: completion), forKey: controller)
         }
         rootController?.pushViewController(controller, animated: animated)
     }
@@ -197,8 +196,8 @@ open class StackRouter: StackRoutable {
     }
 
     public func runCompletion(for controller: UIViewController) {
-        completions[controller]?()
-        completions.removeValue(forKey: controller)
+        completions.object(forKey: controller)?()
+        completions.removeObject(forKey: controller)
     }
 
     public func runCompletionsChain(of controllers: [UIViewController]) {

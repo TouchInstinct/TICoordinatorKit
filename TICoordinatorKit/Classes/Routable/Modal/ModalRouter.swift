@@ -24,7 +24,7 @@ import UIKit
 
 public final class ModalRouter: ModalRoutable {
     
-    private var childRootControllers: [UIViewController] = []
+    private var childRootControllers: WeakArray<UIViewController> = []
 
     public private(set) weak var rootController: UIViewController?
     public private(set) weak var topController: UIViewController?
